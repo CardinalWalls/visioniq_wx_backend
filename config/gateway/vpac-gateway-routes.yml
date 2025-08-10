@@ -1,0 +1,18 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: vpac-main
+          uri: lb://vpac-main
+          filters:
+            - 'PreserveHostHeader'
+          predicates:
+            - 'Path=/api/**'
+            - 'Path=/v3/api-docs/vpac-main'
+
+#        - id: demo-edge
+#          uri: lb://demo-edge
+#          filters:
+#            - 'PreserveHostHeader'
+#          predicates:
+#            - 'Path=/api/edge/**'

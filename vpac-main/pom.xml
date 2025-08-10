@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>vpac-main</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <parent>
+    <groupId>com.wk.app</groupId>
+    <artifactId>vpac</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+  </parent>
+  <dependencies>
+    <!-- spring boot web -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-security</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+<!--      <exclusions>-->
+<!--        <exclusion>-->
+<!--          <groupId>org.springframework.boot</groupId>-->
+<!--          <artifactId>spring-boot-starter-tomcat</artifactId>-->
+<!--        </exclusion>-->
+<!--        <exclusion>-->
+<!--          <groupId>org.apache.tomcat</groupId>-->
+<!--          <artifactId>tomcat-jdbc</artifactId>-->
+<!--        </exclusion>-->
+<!--      </exclusions>-->
+    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>org.springframework.boot</groupId>-->
+<!--      <artifactId>spring-boot-starter-undertow</artifactId>-->
+<!--    </dependency>-->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-freemarker</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.wk.app</groupId>
+      <artifactId>vpac-common</artifactId>
+      <version>${project.parent.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.wk.app</groupId>
+      <artifactId>vpac-database</artifactId>
+      <version>${project.parent.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.wk.app</groupId>
+      <artifactId>vpac-cache</artifactId>
+      <version>${project.parent.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.drakelee.base</groupId>
+      <artifactId>oss</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.drakelee.base</groupId>
+      <artifactId>doc</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.drakelee.base</groupId>
+      <artifactId>task</artifactId>
+    </dependency>
+    <!--    <dependency>-->
+    <!--      <groupId>com.github.binarywang</groupId>-->
+    <!--      <artifactId>weixin-java-mp</artifactId>-->
+    <!--    </dependency>-->
+    <!--    <dependency>-->
+    <!--      <groupId>com.github.binarywang</groupId>-->
+    <!--      <artifactId>weixin-java-pay</artifactId>-->
+    <!--    </dependency>-->
+    <dependency>
+      <groupId>com.github.binarywang</groupId>
+      <artifactId>weixin-java-miniapp</artifactId>
+    </dependency>
+
+    <!--    <dependency>-->
+    <!--      <groupId>commons-fileupload</groupId>-->
+    <!--      <artifactId>commons-fileupload</artifactId>-->
+    <!--    </dependency>-->
+    <dependency>
+      <groupId>de.codecentric</groupId>
+      <artifactId>spring-boot-admin-starter-client</artifactId>
+    </dependency>
+    <!--开启依赖后，将默认开启当前实例的监控端点 /monitor -->
+    <dependency>
+      <groupId>com.drakelee.base</groupId>
+      <artifactId>monitor-server</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+
+
+    <dependency>
+      <groupId>com.aliyun</groupId>
+      <artifactId>ocr_api20210707</artifactId>
+      <version>2.0.7</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>bcprov-jdk15on</artifactId>
+          <groupId>org.bouncycastle</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+<!--    <dependency>-->
+<!--      <groupId>com.alibaba.cloud</groupId>-->
+<!--      <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>-->
+<!--    </dependency>-->
+<!--    <dependency>-->
+<!--      <groupId>com.drakelee.base</groupId>-->
+<!--      <artifactId>rpc</artifactId>-->
+<!--    </dependency>-->
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+
+  <profiles>
+    <profile>
+      <!-- 打包成不带依赖的瘦jar包 -->
+      <id>to-thin</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <configuration>
+              <!--未指定 mainClass 时，使用ZIP-->
+              <layout>ZIP</layout>
+              <!--打包瘦身jar时，指定将哪些依赖打包进jar中（启动需指定lib路径，如： java "-Dloader.path=lib" -jar xxx.jar）-->
+              <!--注释掉时则为普通springboot jar-->
+              <includes>
+                <include>
+                  <!-- undertow 容器启动异常问题（无任何依赖时，用 nothing）-->
+                  <groupId>org.jboss.xnio</groupId>
+                  <artifactId>xnio-nio</artifactId>
+                </include>
+                <!-- 引入此项目其它模块，因为会随时改动 -->
+                <include>
+                  <groupId>${project.groupId}</groupId>
+                  <artifactId>vpac-common</artifactId>
+                </include>
+                <include>
+                  <groupId>${project.groupId}</groupId>
+                  <artifactId>vpac-domain</artifactId>
+                </include>
+                <include>
+                  <groupId>${project.groupId}</groupId>
+                  <artifactId>vpac-database</artifactId>
+                </include>
+                <include>
+                  <groupId>${project.groupId}</groupId>
+                  <artifactId>vpac-cache</artifactId>
+                </include>
+              </includes>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <!-- 将依赖包打包成一个 base-lib.jar，一般和 to-thin 一起用 -->
+      <id>to-base-lib</id>
+      <build>
+        <plugins>
+          <!--  copy 依赖 jar 至 lib 文件夹，打瘦身jar时必要 -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+          </plugin>
+          <!--       将依赖的jar文件目录打包成 base-lib.jar，减少系统句柄数占用；-->
+          <!--       启动时设置参数 "-Dloader.home=/{base-lib.jar dir}/" "-Dloader.path=base-lib.jar" &ndash;&gt;-->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-assembly-plugin</artifactId>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <!-- build docker镜像前，打包成spring boot的fat jar，一般单独勾选 -->
+      <id>to-docker</id>
+      <properties>
+        <base.config.impl>file</base.config.impl>
+        <base.config.prefix>
+          /data/app/config/*/
+        </base.config.prefix>
+      </properties>
+      <build>
+        <finalName>${project.artifactId}</finalName>
+      </build>
+    </profile>
+  </profiles>
+</project>

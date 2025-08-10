@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>file_slide_64</title>
+    <defs>
+        <linearGradient x1="100%" y1="39.4645982%" x2="83.1081738%" y2="39.4645982%" id="linearGradient-1">
+            <stop stop-color="#EB4825" offset="0%"></stop>
+            <stop stop-color="#EB3319" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="60.3154297%" y1="0%" x2="16.6000977%" y2="109.086914%" id="linearGradient-2">
+            <stop stop-color="#FF8246" offset="0%"></stop>
+            <stop stop-color="#FF5E2F" offset="100%"></stop>
+        </linearGradient>
+        <path d="M34.5,0 C36.1568542,-3.04359188e-16 37.5,1.34314575 37.5,3 L37.5,42 L37.5,42 C37.5,43.6568542 38.8431458,45 40.5,45 L3,45 C1.34314575,45 2.02906125e-16,43.6568542 0,42 L0,3 C-2.02906125e-16,1.34314575 1.34314575,3.04359188e-16 3,0 L34.5,0 Z" id="path-3"></path>
+        <filter x="-2.5%" y="-2.2%" width="104.9%" height="104.4%" filterUnits="objectBoundingBox" id="filter-4">
+            <feGaussianBlur stdDeviation="0.5" in="SourceAlpha" result="shadowBlurInner1"></feGaussianBlur>
+            <feOffset dx="0" dy="1" in="shadowBlurInner1" result="shadowOffsetInner1"></feOffset>
+            <feComposite in="shadowOffsetInner1" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner1"></feComposite>
+            <feColorMatrix values="0 0 0 0 1   0 0 0 0 1   0 0 0 0 1  0 0 0 0.24 0" type="matrix" in="shadowInnerInner1"></feColorMatrix>
+        </filter>
+        <path d="M10.5001326,0.00633983232 L10.5,11.25 L21.7436602,11.2498674 C21.5460874,17.0823884 16.7556333,21.75 10.875,21.75 C4.86890335,21.75 0,16.8810967 0,10.875 C0,4.99436672 4.66761164,0.203912555 10.5001326,0.00633983232 Z" id="path-5"></path>
+        <filter x="-9.2%" y="-9.2%" width="136.8%" height="136.8%" filterUnits="objectBoundingBox" id="filter-6">
+            <feOffset dx="2" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.08 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <path d="M12.7498599,0.00223491565 C17.6199858,0.218288459 21.5292516,4.13028418 21.740971,9.00153559 L12.7494568,9.00123492 Z" id="path-7"></path>
+        <filter x="-22.2%" y="-22.2%" width="189.0%" height="188.9%" filterUnits="objectBoundingBox" id="filter-8">
+            <feOffset dx="2" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.457455842   0 0 0 0 0   0 0 0 0 0  0 0 0 0.16 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="品类图标库" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="腾讯文档品类图标切图库" transform="translate(-528.000000, -835.000000)">
+            <g id="file_slide_64" transform="translate(528.000000, 835.000000)">
+                <rect id="bg" fill="#FFFFFF" opacity="0" x="0" y="0" width="64" height="64"></rect>
+                <g id="编组-5" transform="translate(10.000000, 10.000000)">
+                    <path d="M10.5,10.5 L40.5,10.5 C42.1568542,10.5 43.5,11.8431458 43.5,13.5 L43.5,42 C43.5,43.6568542 42.1568542,45 40.5,45 L10.5,45 C8.84314575,45 7.5,43.6568542 7.5,42 L7.5,13.5 C7.5,11.8431458 8.84314575,10.5 10.5,10.5 Z" id="蒙版备份" fill="url(#linearGradient-1)"></path>
+                    <g id="蒙版">
+                        <use fill="url(#linearGradient-2)" fill-rule="evenodd" xlink:href="#path-3"></use>
+                        <use fill="black" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-3"></use>
+                    </g>
+                    <g id="编组-3" transform="translate(7.500000, 15.750000)">
+                        <g id="形状结合">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-6)" xlink:href="#path-5"></use>
+                            <use fill="#FFD7BF" fill-rule="evenodd" xlink:href="#path-5"></use>
+                        </g>
+                        <g id="形状结合">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-8)" xlink:href="#path-7"></use>
+                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-7"></use>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

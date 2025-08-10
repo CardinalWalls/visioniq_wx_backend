@@ -1,0 +1,9 @@
+a-script
+**.iml
+*/target
+*.bat
+*.sh
+.gitignore
+docker-*.yml
+Dockerfile*
+README*

@@ -1,0 +1,67 @@
+spring:
+  datasource:
+    driver-class-name: net.sf.log4jdbc.DriverSpy
+    username: wk
+    password: "xxx"
+    url: jdbc:log4jdbc:mysql://rm-f8zvwd53aia28gaq0.mysql.rds.aliyuncs.com:3306/vpac_test?autoReconnect=true&useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false&serverTimezone=GMT%2B8
+
+
+base:
+  boot.async-init.jpa.enabled: true
+  common.cache:
+    enabled: true
+    impl: local  #缓存实现：local(默认值Caffeine)、redis
+  host:
+    api: "https://vpac.cqwangkuai.com"
+
+  #报警通知，暂只支持钉钉群
+  notify:
+    dingtalk:
+      test: true
+      enabled: true
+  wechat:
+    miniapp:
+      name: "视力防控平台"
+      appid: wx54a25525a1b0b301
+      secret: "xxx"
+      token: 111
+      aesKey: 111
+      msgDataFormat: JSON
+
+
+  sms:
+    # 短信服务实现： Null、Aliyun
+    impl: "Aliyun"
+    # 阿里云
+    Aliyun:
+      accessKeyId: "xxx"
+      accessKeySecret: "xxx"
+      regionId: "cn-chongqing"
+      signName: "网快"
+      timeout: "10000"
+
+  oss:
+    #OSS服务实现： local、ali、qiniu
+    impl: "ali"
+    ali:
+      accessKeyId: "xxx"
+      accessKeySecret: "xxx"
+      endpoint: 'https://oss-cn-zhangjiakou.aliyuncs.com'
+      bucketUrl: 'https://wk-vpac-prod.oss-cn-zhangjiakou.aliyuncs.com'
+      bucket: 'wk-vpac-prod'
+      fileSizeByte: '209715200' #200m
+      tokenExpireSeconds: '1800'
+      resize:
+        max-width: 1920
+      # 验签公钥 https://gosspublic.alicdn.com/callback_pub_key_v1.pem
+      callbackPubKey: |
+        MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAKs/JBGzwUB2aVht4crBx3oIPBLNsjGs
+        C0fTXv+nvlmklvkcolvpvXLTjaxUHR3W9LXxQ2EHXAJfCB+6H2YF1k8CAwEAAQ==
+
+  admin:
+    info:
+      system-name: "视力防控平台"
+      copyright: "Copyright © <a target='_blank' href='https://vpac.cqwangkuai.com'>视力防控平台</a>"
+      login-title: "<label style='font-size:25px;margin-top:12px;color:#555'>{systemName}</label>"
+#      login-title: "<img style='height:60px;float:left' src='/admin/img/logo.png' onerror='this.remove()'/><label style='font-size:25px;margin-top:12px;color:#555'>{systemName}</label>"
+

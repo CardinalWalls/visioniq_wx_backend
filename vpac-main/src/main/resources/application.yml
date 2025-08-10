@@ -1,0 +1,34 @@
+base:
+  app:
+    name: "@project.artifactId@"
+    version: "@project.version@"
+    project: "@project.parent.artifactId@"
+  config:
+    impl: "@base.config.impl@"
+    prefix: "@base.config.prefix@"
+  actuator.user:
+    name: "@base.actuator.user.name@"
+    password: "@base.actuator.user.password@"
+  open-api:
+    auth-enabled: true
+    auth-username: doc
+    auth-password: ${base.actuator.user.password}
+
+logging:
+  file:
+    name: '${user.home}/logs/${spring.application.name}/${spring.application.name}-${server.port}.txt'
+  level:
+    ROOT: "@logging.level.major.root@"
+    STDOUT: "@logging.level.major.stdout@"
+
+spring:
+  application.name: "${base.app.name}"
+  profiles.active: "@build.profiles.active@"
+  cloud:
+    discovery.enabled: false
+
+  #配置文件列表，固定格式： optional:{file, nacos, configserver 等}:project-cache.yml
+  config.import:
+    - optional:${base.config.impl}:${base.config.prefix}base_config.yml
+    - optional:${base.config.impl}:${base.config.prefix}${base.app.project}-gateway-auth-main.yml
+    - optional:${base.config.impl}:${base.config.prefix}${base.app.project}-main-${spring.profiles.active}.yml

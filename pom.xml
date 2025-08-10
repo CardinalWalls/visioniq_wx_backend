@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.wk.app</groupId>
+  <artifactId>vpac</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>${project.artifactId}</name>
+  <description>vision prevention and control platform (vpac)</description>
+
+  <properties>
+    <maven.build.timestamp.format>yyyyMMddHHmm</maven.build.timestamp.format>
+    <skipTests>true</skipTests>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <base.actuator.user.name>wkkj</base.actuator.user.name>
+    <!--  super-admin-wkkj -->
+    <base.actuator.user.password>{cipher}c1612327fceee96f525b612b4b1692286e097b1333b856c28b40378e9a8f9c19b4239123babe9e2bf54cd9a2e21bae4c</base.actuator.user.password>
+  </properties>
+
+  <modules>
+    <module>vpac-common</module>
+    <module>vpac-domain</module>
+    <module>vpac-database</module>
+    <module>vpac-cache</module>
+    <module>vpac-main</module>
+    <module>vpac-codetool</module>
+<!--    <module>vpac-gateway</module>-->
+  </modules>
+
+  <parent>
+    <groupId>com.drakelee.base</groupId>
+    <artifactId>base-components</artifactId>
+    <version>v2023-SNAPSHOT</version>
+  </parent>
+
+  <profiles>
+    <profile>
+      <id>dev</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <build.profiles.active>dev</build.profiles.active>
+        <!-- 读取配置文件的实现方式，如：file, nacos, configserver 等 -->
+        <base.config.impl>file</base.config.impl>
+        <!-- 读取配置文件前缀，如果 base.config.impl = file，则需要文件的绝对路径如(只支持单'*'通配符，通配一层目录)：/data/project/config/*/ -->
+        <!-- 如果 base.config.impl 为其它配置中心时，则按具体规则配置，如：nacos时，配置空字符串即可 -->
+        <base.config.prefix>
+          ${basedir}/../config/*/
+        </base.config.prefix>
+      </properties>
+    </profile>
+    <profile>
+      <id>prod</id>
+      <properties>
+        <build.profiles.active>prod</build.profiles.active>
+        <!-- 读取配置文件的实现方式，如：file, nacos, configserver 等 -->
+        <base.config.impl>file</base.config.impl>
+        <!-- 读取配置文件前缀，如果 base.config.impl = file，则需要文件的绝对路径如(只支持单'*'通配符，通配一层目录)：/data/project/config/*/ -->
+        <!-- 如果 base.config.impl 为其它配置中心时，则按具体规则配置，如：nacos时，配置空字符串即可 -->
+        <base.config.prefix>
+          /data/wk/vpac/config/*/
+        </base.config.prefix>
+      </properties>
+    </profile>
+    <profile>
+      <id>test</id>
+      <properties>
+        <build.profiles.active>test</build.profiles.active>
+        <!-- 读取配置文件的实现方式，如：file, nacos, configserver 等 -->
+        <base.config.impl>file</base.config.impl>
+        <!-- 读取配置文件前缀，如果 base.config.impl = file，则需要文件的绝对路径如(只支持单'*'通配符，通配一层目录)：/data/project/config/*/ -->
+        <!-- 如果 base.config.impl 为其它配置中心时，则按具体规则配置，如：nacos时，配置空字符串即可 -->
+        <base.config.prefix>
+          /data/wk/vpac/config/*/
+        </base.config.prefix>
+      </properties>
+    </profile>
+  </profiles>
+
+  <build>
+    <finalName>${project.artifactId}-${build.profiles.active}-${project.version}-${maven.build.timestamp}</finalName>
+  </build>
+
+  <repositories>
+    <repository>
+      <id>devops-central</id>
+      <name>central</name>
+      <url>https://cqwk-maven.pkg.coding.net/repository/devops/central/</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+        <updatePolicy>always</updatePolicy>
+      </snapshots>
+    </repository>
+  </repositories>
+
+</project>

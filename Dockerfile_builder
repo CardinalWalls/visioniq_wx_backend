@@ -1,0 +1,12 @@
+FROM cqwk-docker.pkg.coding.net/devops/public/jdk21_maven:3.3 as builder
+WORKDIR /data/app
+COPY . /data/app/
+RUN mvn clean package -P prod,to-docker
+
+
+FROM cqwk-docker.pkg.coding.net/devops/public/jdk21_maven
+COPY --from=builder /data/maven/repository  /data/maven/repository
+
+
+#docker build -t cqwk-docker.pkg.coding.net/devops/private/wk-vpac:builder . -f Dockerfile_builder
+#docker push cqwk-docker.pkg.coding.net/devops/private/wk-vpac:builder

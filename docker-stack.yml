@@ -1,0 +1,29 @@
+version: '3.8'
+# https://docs.docker.com/compose/compose-file/compose-versioning/#version-3
+# https://docs.docker.com/compose/compose-file/
+# 此文件放在目录：/data/docker-compose/wk-vpac/docker-stack.yml
+# docker stack deploy --with-registry-auth -c /data/docker-compose/wk-vpac/docker-stack.yml wk-vpac
+networks:
+  vpac:
+    external: true
+services:
+  wk-vpac:
+    image: cqwk-docker.pkg.coding.net/devops/private/wk-vpac
+    environment:
+      - "JAVA_OPTS=-Xmx1g -XX:+UseZGC -XX:+ZGenerational"
+    # 让java pid 不为 1，可使用 arthas 等工具
+    init: true
+    volumes:
+      - "/root/logs:/root/logs"
+    deploy:
+#      placement:
+#        constraints:
+#          - node.role == manager #在管理节点上运行
+      replicas: 1
+      update_config:
+        parallelism: 1
+        order: stop-first
+    networks:
+      - "vpac"
+    ports:
+      - "60606:60606"

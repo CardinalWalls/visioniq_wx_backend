@@ -1,0 +1,216 @@
+server:
+  forward-headers-strategy: native
+  #见 io.undertow.Undertow.Builder
+  undertow:
+    direct-buffers: true
+  compression:
+    enabled: true
+    min-response-size: 2KB
+    mime-types:
+      - "text/html"
+      - "text/xml"
+      - "text/plain"
+      - "text/css"
+      - "text/javascript"
+      - "application/javascript"
+      - "application/json"
+      - "application/xml"
+      - "image/jpeg"
+      - "image/gif"
+      - "image/png"
+
+management:
+  endpoints:
+    enabled-by-default: true
+    web:
+      exposure:
+        include: "*"
+      base-path: ""
+  endpoint:
+    health:
+      show-details: ALWAYS
+  info:
+    env:
+      enabled: true
+
+spring:
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 100MB
+      max-request-size: 100MB
+
+  web:
+    resources:
+      cache:
+        cachecontrol:
+          must-revalidate: true
+
+  boot:
+    admin:
+      # 此路径需要包含在 base.actuator.match-path 中
+      context-path: "/monitor"
+      client:
+        api-path: "${spring.boot.admin.context-path}/instances"
+        username: "${base.actuator.user.name}"
+        password: "${base.actuator.user.password}"
+        instance:
+          metadata:
+            user.name: "${base.actuator.user.name}"
+            user.password: "${base.actuator.user.password}"
+      discovery:
+        converter:
+          management-context-path: "${management.endpoints.web.base-path:}"
+      ui:
+        title: "${spring.application.name}"
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    show-sql: false
+    open-in-view: true
+    properties:
+      hibernate.show_sql: false
+      hibernate.format_sql: false
+      #批量的大小
+      hibernate.jdbc.batch_size: 1000
+      #可以告诉Hibernate JDBC驱动程序能够在执行批量更新时返回正确的受影响行数(执行版本检查所需)
+      hibernate.jdbc.batch_versioned_data: true
+      #开启批量插入
+      hibernate.order_inserts: true
+      #开启批量更新
+      hibernate.order_updates: true
+
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    #    joda-date-time-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    default-property-inclusion: non_null
+    serialization:
+      write_null_map_values: false
+
+  # freemarker config
+  freemarker:
+    allow-request-override: false
+    allow-session-override: false
+    cache: false
+    charset: UTF-8
+    check-template-location: true
+    content-type: text/html
+    enabled: true
+    expose-request-attributes: false
+    expose-session-attributes: false
+    expose-spring-macro-helpers: true
+    prefer-file-system-access: false
+    suffix: .ftl
+    template-loader-path: classpath:/templates/
+    settings:
+      template_update_delay: 0
+      default_encoding: UTF-8
+      classic_compatible: true
+      date_format: yyyy-MM-dd
+      time_format: HH:mm:ss
+      datetime_format: yyyy-MM-dd HH:mm:ss
+
+
+feign:
+  compression:
+    request:
+      enabled: true
+    response:
+      enabled: true
+
+base:
+  #线程池最大线程数量（默认为2 * CPU核心数，核心线程数为此值的1/2）
+#  common.threadPool.poolSize: 16
+
+  captcha.props.kaptcha:
+    #是否有边框 可选yes 或者 no
+    border: 'no'
+    #边框颜色
+    #  border.color: '105,179,90'
+    textproducer:
+      char:
+        #验证码文本字符长度 默认为5
+        length: '4'
+        #验证码文本字符内容范围  默认为abcde2345678gfynmnpwx
+        string: '0123456789'
+      font:
+        #验证码文本字符颜色
+        color: '193,3,3'
+        #验证码文本字体样式
+        names: '微软雅黑,宋体,楷体'
+        #验证码文本字符大小
+        size: '40'
+    image:
+      #验证码图片的宽度 默认200
+      width: '130'
+      #验证码图片的高度 默认50
+      height: '60'
+
+  #报警通知，暂只支持钉钉群
+  notify:
+    dingtalk:
+      access-token: "xxx"
+      keyword: "应用报警"
+
+  admin:
+    #超级管理员角色ID, 无需配置菜单权限，拥有所有权限
+    super-role-ids:
+      - "d1817b1b-7a12-480e-b2d7-f3856e099b2a"
+    #登录页
+    login-path: "/admin/login"
+    #只需要登录后就能直接访问的权限路径（跳过后台权限效验），Spring MVC 语法
+    only-login-auth-path:
+      - "/admin"
+      - "/admin/"
+      - "/admin/index"
+      - "/admin/home/**"
+      - "/admin/information/**"
+      - "/admin/ueditor/controller/**"
+      - "/admin/attachment/**"
+
+
+  oss:
+    #本地文件实现
+    local:
+      host: "${base.host.api}"
+      tempFileDeleteDays: 1
+
+  common.cache:
+    tokenMultipleLogin: true #非唯一性登录，是否支持多处登录
+    tokenExpireDefault: 2592000 # token 失效时间(秒), 默认1800
+    #特殊Token对象的失效时间
+    tokenExpireMap:
+      UserMemberToken: 3600
+
+    # 自定义缓存失效时间, 单位秒
+    expires:
+      ADMIN_AUTH_INFO: ${base.common.cache.tokenExpireMap.UserMemberToken} #admin端，登录权限，失效时间同 UserMemberToken 一样
+      JS_DECRYPT : 300 #发送短信前的JS加解密代码
+      ATTACHMENT_ID_URL: 3600 #附件id对应url
+      ATTACHMENT_ID_LIST: 3600 #附件id对应的权限列表
+      USER_SMS_LASTTIME: 3600 #短信发送上次时间
+      WECHAT_BIND: 300 #微信绑定
+      PASSWORD_ERROR: 3600 #用户一个小时内密码输入错误
+      WECHAT_LOGIN_TOKENOBJ: 600 #微信登录重定向临时对象
+      #----------------------- 验证码 ---------------------
+      NORMAL_CAPTCHA_IMG: 300 #一般表单图形验证码
+      PRE_SMS_CODE_LG: 300 #登录-短信发送前的验证码
+      VERIFY_CODE_LG: 30 #登录-验证码
+      PRE_SMS_CODE_RG: 300 #注册-短信发送前的验证码
+      VERIFY_CODE_RG: 600 #注册-验证码
+      PRE_SMS_CODE_CP: 300 #修改密码-短信发送前的验证码
+      VERIFY_CODE_CP: 300 #修改密码-验证码
+      PRE_SMS_CODE_PHONE: 300 #修改手机号-短信发送前的验证码
+      VERIFY_CODE_PHONE: 300 #修改手机号-验证码
+      PRE_SMS_CODE_TX: 300 #提现-短信发送前的验证码
+      VERIFY_CODE_TX: 300 #提现-验证码
+      PRE_SMS_CODE_EMAIL: 300 #修改邮箱
+      VERIFY_CODE_EMAIL: 300 #修改邮箱-验证码
+      PRE_BALANCE_PAY: 300 #余额支付-短信发送前的验证码
+      BALANCE_PAY: 300 #余额支付-验证码
+
+  #文字识别
+  ocr:
+    aliyun:
+      accessKeyId: "xxx"
+      accessKeySecret: "xxx"

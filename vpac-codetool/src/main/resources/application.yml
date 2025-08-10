@@ -1,0 +1,17 @@
+server.port: 9999
+
+#设置数据库信息, 可设置带{cipher}开头的加密值
+spring:
+  application:
+    name: "code-tool"
+  datasource:
+    driver-class-name: net.sf.log4jdbc.DriverSpy
+    name: 'vpac_dev'
+    username: 'root'
+    password: 'He800@123'
+    url: jdbc:log4jdbc:mysql://192.168.60.14:3306/${spring.datasource.name}?autoReconnect=true&useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false&serverTimezone=GMT%2B8
+  freemarker:
+    suffix: ".ftl"
+
+
+#如需修改模板，在对应位置覆盖模板文件即可；如：classpath: templates/common/DomainMybatisAndJPA.tmpl

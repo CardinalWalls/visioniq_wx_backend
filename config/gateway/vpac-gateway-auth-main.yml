@@ -1,0 +1,55 @@
+#登录权限匹配，对应服务名 ${spring.application.name} 的权限配置（Spring MVC 语法），若都未匹配则默认返回401，
+#如果如果带有 “*” 等通配符，会按顺序优先匹配靠前的；
+#顺序： skipCheckMapping完全匹配uri > skipCheckMapping含通配符uri > loadNoCheckMapping完全匹配uri > loadNoCheckMapping含通配符uri
+#如需指定请求方法，可配置： "GET:/api/demo"
+base.filters.authorization:
+  authMap:
+    vpac-main:
+      #跳过权限验证的匹配（不读取Token）
+      #不进入admin权限验证拦截器
+      skipCheckMapping:
+        - "/"
+        - "/**/**.html"
+        - "/**/**.js"
+        - "/**/**.css"
+        - "/admin/css/**"
+        - "/admin/js/**"
+        - "/admin/pub/**"
+        - "/admin/img/**"
+        - "/admin/fonts/**"
+        - "/admin/error/**"
+        - "/admin/edge/**"
+        - "${base.admin.login-path}"
+        - "/admin/logout"
+        - "/admin/register/**"
+        - "/admin/userType/register"
+        - "/admin/region/tree"
+        - "/admin/region/member/tree"
+        - "GET:/admin/region/all"
+        - "GET:/admin/region/tiny/all"
+#------------------------------- 以下为API路径 -------------------------
+        - "/api/banner/**"
+        - "/api/edge/**"
+        - "/api/sys/variabledata"
+        - "/api/user/login"
+        - "/api/user/register"
+        - "/api/user/token-type/**"
+        - "/api/advertisement/**"
+        - "/api/dynamicFormData/pub"
+        - "/api/dictionary/data/**"
+        - "/api/public/**"
+      #读取Token对象并向下游传递，但不验证的Token非空性（读取Token）
+      loadNoCheckMapping:
+        #读取Token对象并带入（不效验）下游的权限效验拦截器 com.drakelee.demo.admin.interceptors.AdminAuthInterceptor
+        - "/admin/**"
+#------------------------------- 以下为API路径 -------------------------        
+        - "/api/user/password"
+        - "/api/region/**"
+        - "/api/oss/**"   #OSS相关
+        - "/api/demo/**"
+        - "/api/weixin/config"
+        - "/api/mini/**"
+        - "/api/news/**"
+        - "GET:/api/region/community/page"
+        - "GET:/api/user/expert/page"
+

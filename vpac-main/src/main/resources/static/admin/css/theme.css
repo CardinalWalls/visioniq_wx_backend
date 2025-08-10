@@ -1,0 +1,192 @@
+.navbar-static-top{
+  background:#3c8dbc;
+  background:-webkit-linear-gradient(-45deg, #3c8dbc 0%, #00c6ef 100%);
+  background:linear-gradient(100deg, #3c8dbc 0%, #00c6ef 100%);
+}
+.logo-slogan-context{
+  background:#3993c7;
+  background:-webkit-linear-gradient(30deg, #4fbad6 0%, #1e76a9 100%);
+  background:linear-gradient(60deg, #4fbad6 0%, #1e76a9 100%);
+}
+.navbar-static-side {
+  background:#13334a !important;
+  background:-webkit-linear-gradient(30deg, #070d0e 0%, #1b5177 100%) !important;
+  background:linear-gradient(60deg, #070d0e 0%, #1b5177 100%) !important;
+}
+.navbar-static-side .nav>li.active {
+  border-left:2px solid #19a9d5;
+  background:#00000080;
+}
+.navbar-default .nav > li > a:hover,
+.navbar-default .nav > li > a:focus {
+  background-color:#0e93c3;
+  color:white;
+}
+body.parent{
+  background-color:#eafaff;
+}
+body.child{
+  background:none !important;
+}
+
+.theme-skin-green .navbar-static-top{
+  background:#00bc66;
+  background:-webkit-linear-gradient(-45deg, #00bc66 0%, #00c5bc 100%);
+  background:linear-gradient(100deg, #00bc66 0%, #00c5bc 100%);
+}
+.theme-skin-green .logo-slogan-context{
+  background:#00bc66;
+  background:-webkit-linear-gradient(30deg, #00bfd2 0%, #00bc66 100%);
+  background:linear-gradient(60deg, #00bfd2 0%, #00bc66 100%);
+}
+.theme-skin-green .navbar-static-side {
+  background:#003e22 !important;
+  background:-webkit-linear-gradient(30deg, #010e0e 0%, #006135 100%) !important;
+  background:linear-gradient(60deg, #010e0e 0%, #006135 100%) !important;
+}
+.theme-skin-green .navbar-static-side .nav>li.active {
+  border-left:2px solid #00bc66;
+}
+.theme-skin-green .navbar-default .nav > li > a:hover,
+.theme-skin-green .navbar-default .nav > li > a:focus {
+  background-color:#00a55e;
+  color:white;
+}
+body.theme-skin-green.parent{
+  background-color:#e5fff3;
+}
+
+.theme-skin-orange .navbar-static-top{
+  background:#ca5836;
+  background:-webkit-linear-gradient(-45deg, #ca3636 0%, #dc8700 100%);
+  background:linear-gradient(100deg, #ca3636 0%, #dc8700 100%);
+}
+.theme-skin-orange .logo-slogan-context{
+  background:#ca5836;
+  background:-webkit-linear-gradient(30deg, #f7b600 0%, #ca3636 100%);
+  background:linear-gradient(60deg, #f7b600 0%, #ca3636 100%);
+}
+.theme-skin-orange .navbar-static-side {
+  background:#732d11 !important;
+  background:-webkit-linear-gradient(30deg, #150000 0%, #ad613d 100%) !important;
+  background:linear-gradient(60deg, #150000 0%, #ad613d 100%) !important;
+}
+.theme-skin-orange .navbar-static-side .nav>li.active {
+  border-left:2px solid #ca3636;
+}
+.theme-skin-orange .navbar-default .nav > li > a:hover,
+.theme-skin-orange .navbar-default .nav > li > a:focus {
+  background-color:#a7420a;
+  color:white;
+}
+body.theme-skin-orange.parent{
+  background-color:#fff2e7;
+}
+
+.theme-skin-pink .navbar-static-top{
+  background:#d8358f;
+  background:-webkit-linear-gradient(-45deg, #ca2954 0%, #c977fd 100%);
+  background:linear-gradient(100deg, #ca2954 0%, #c977fd 100%);
+}
+.theme-skin-pink .logo-slogan-context{
+  background:#d8358f;
+  background:-webkit-linear-gradient(30deg, #4172ce 0%, #ca2954 100%);
+  background:linear-gradient(60deg, #4172ce 0%, #ca2954 100%);
+}
+.theme-skin-pink .navbar-static-side {
+  background:#420037 !important;
+  background:-webkit-linear-gradient(30deg, #0a0033 0%, #ad2a5e 100%) !important;
+  background:linear-gradient(60deg, #0a0033 0%, #ad2a5e 100%) !important;
+}
+.theme-skin-pink .navbar-static-side .nav>li.active {
+  border-left:2px solid #b448ca;
+}
+.theme-skin-pink .navbar-default .nav > li > a:hover,
+.theme-skin-pink .navbar-default .nav > li > a:focus {
+  background-color:#de42b5;
+  color:white;
+}
+body.theme-skin-pink.parent{
+  background-color:#fbe9ff;
+}
+
+.theme-skin-purple .navbar-static-top{
+  background:#8c89c6;
+  background:-webkit-linear-gradient(-45deg, #8c89c6 0%, #e48594 100%);
+  background:linear-gradient(100deg, #8c89c6 0%, #e48594 100%);
+}
+.theme-skin-purple .logo-slogan-context{
+  background:#7b78b1;
+  background:-webkit-linear-gradient(-45deg, #e48594bd 0%, #706daf 100%);
+  background:linear-gradient(135deg, #e48594bd 0%, #706daf 100%);
+}
+.theme-skin-purple .navbar-static-side {
+  background:#4a4879 !important;
+  background:-webkit-linear-gradient(30deg, #160019 0%, #a8a6d4 100%) !important;
+  background:linear-gradient(60deg, #160019 0%, #a8a6d4 100%) !important;
+}
+.theme-skin-purple .navbar-static-side .nav>li.active {
+  border-left:2px solid #977fd0;
+}
+.theme-skin-purple .navbar-default .nav > li > a:hover,
+.theme-skin-purple .navbar-default .nav > li > a:focus {
+  background-color:#a390b9;
+  color:white;
+}
+body.theme-skin-purple.parent{
+  background-color:#f3e7ff;
+}
+
+.theme-skin-grey .navbar-static-top{
+  background:#737373;
+  background:-webkit-linear-gradient(-45deg, #3a3a3a 0%, #ababab 100%);
+  background:linear-gradient(100deg, #3a3a3a 0%, #ababab 100%);
+}
+.theme-skin-grey .logo-slogan-context{
+  background:#757474;
+  background:-webkit-linear-gradient(30deg, #9a9a9a 0%, #484848 100%);
+  background:linear-gradient(60deg, #9a9a9a 0%, #484848 100%);
+}
+.theme-skin-grey .navbar-static-side {
+  background:#292929 !important;
+  background:-webkit-linear-gradient(30deg, #000000 0%, #4e4e4e 100%) !important;
+  background:linear-gradient(60deg, #000000 0%, #4e4e4e 100%) !important;
+}
+.theme-skin-grey .navbar-static-side .nav>li.active {
+  border-left:2px solid #afafaf;
+}
+.theme-skin-grey .navbar-default .nav > li > a:hover,
+.theme-skin-grey .navbar-default .nav > li > a:focus {
+  background-color:#7b7b7b;
+  color:white;
+}
+body.theme-skin-grey.parent{
+  background-color:#e6e6e6;
+}
+
+.theme-skin-vip .navbar-static-top{
+  background:#CDA992;
+  background:-webkit-linear-gradient(-45deg, #CDA992 0%, #3B3B3B 100%);
+  background:linear-gradient(100deg, #CDA992 0%, #3B3B3B 100%);
+}
+.theme-skin-vip .logo-slogan-context{
+  background:#CDA992;
+  background:-webkit-linear-gradient(30deg, #6F5A4D 0%, #CDA992 100%);
+  background:linear-gradient(60deg, #6F5A4D 0%, #CDA992 100%);
+}
+.theme-skin-vip .navbar-static-side {
+  background:#CDA992 !important;
+  background:-webkit-linear-gradient(30deg, #3B3B3B 0%, #CDA992 100%) !important;
+  background:linear-gradient(60deg, #3B3B3B 0%, #CDA992 100%) !important;
+}
+.theme-skin-vip .navbar-static-side .nav>li.active {
+  border-left:2px solid #CDA992;
+}
+.theme-skin-vip .navbar-default .nav > li > a:hover,
+.theme-skin-vip .navbar-default .nav > li > a:focus {
+  background-color:#CDA992;
+  color:white;
+}
+body.theme-skin-vip.parent{
+  background-color:#fff2e7;
+}

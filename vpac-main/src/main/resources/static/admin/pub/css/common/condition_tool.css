@@ -1,0 +1,22 @@
+.groupJoinType{
+  display: inline;
+  width: 40px;
+  margin: 5px 0;
+  padding: 2px;
+  height: 24px;
+  vertical-align: top;
+}
+.condition-group{
+  margin: 10px 0;
+  padding: 10px 0;
+  /*border-top: 1px solid #ccc;*/
+}
+.condition-item{
+  overflow-y: auto;
+}
+.condition-item .form-control{
+  margin-top:5px;
+}
+.conditionStr label{
+  margin-right:1px;
+}

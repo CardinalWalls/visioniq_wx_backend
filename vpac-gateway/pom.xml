@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>vpac-gateway</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+
+  <parent>
+    <groupId>com.wk.app</groupId>
+    <artifactId>vpac</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+  </parent>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.drakelee.base</groupId>
+      <artifactId>gateway</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.alibaba.cloud</groupId>
+      <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>de.codecentric</groupId>
+      <artifactId>spring-boot-admin-starter-client</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.drakelee.base</groupId>
+      <artifactId>monitor-server</artifactId>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <!--未指定 mainClass 时，使用ZIP-->
+          <layout>ZIP</layout>
+          <!--打包瘦身jar时，指定将哪些依赖打包进jar中（启动需指定lib路径，如： java "-Dloader.path=lib" -jar xxx.jar）-->
+          <!--注释掉时则为普通springboot jar-->
+          <includes>
+            <include>
+              <!-- undertow 容器启动异常问题（无任何依赖时，用 nothing）-->
+              <groupId>org.jboss.xnio</groupId>
+              <artifactId>xnio-nio</artifactId>
+            </include>
+            <!-- 引入此项目其它模块，因为会随时改动 -->
+          </includes>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
